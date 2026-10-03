@@ -1,0 +1,20 @@
+{
+  "projectId": "mqsjmrl7",
+  "dataset": "production",
+  "schema": {
+    "name": "tienda",
+    "types": [
+      {
+        "type": "document",
+        "name": "producto",
+        "title": "Mis Productos reales",
+        "fields": [
+          { "type": "string", "name": "nombre", "title": "Nombre de la Prenda" },
+          { "type": "number", "name": "precio", "title": "Precio en Pesos ($)" },
+          { "type": "array", "name": "imagenes", "title": "Carrusel de Fotos del Producto", "of": [{ "type": "image", "options": { "hotspot": true } }] },
+          { "type": "text", "name": "descripcion", "title": "Detalles o Frase de Fe" }
+        ]
+      }
+    ]
+  }
+}
