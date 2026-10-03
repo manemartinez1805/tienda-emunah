@@ -1,0 +1,687 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>EMUNAH · Vive tu fe</title>
+<meta name="description" content="EMUNAH · Diseños con propósito: camisetas, accesorios y objetos que llevan contigo aquello en lo que crees.">
+<link rel="icon" type="image/png" href="https://media.base44.com/images/public/6aac0ecc054ce32a04f11340/958403ddf_LogoEMUNAHpng.png">
+<link rel="apple-touch-icon" href="https://media.base44.com/images/public/6aac0ecc054ce32a04f11340/958403ddf_LogoEMUNAHpng.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:#f7f4ec;color:#231f1c;font-family:'Inter',system-ui,-apple-system,sans-serif;-webkit-font-smoothing:antialiased;font-size:16px}
+h1,h2,h3{font-family:'Cormorant Garamond',Georgia,serif;font-weight:300;line-height:1.05;margin:0}
+p{margin:0}
+a{color:inherit;text-decoration:none}
+img{display:block;max-width:100%}
+ul{margin:0;padding:0}
+.luxe{letter-spacing:.35em;text-transform:uppercase}
+.clay{color:#8c735d}
+.section{padding:80px 24px}
+@media(min-width:768px){.section{padding:112px 48px}}
+.inner{max-width:1152px;margin:0 auto}
+.eyebrow{font-size:.65rem;letter-spacing:.35em;text-transform:uppercase;color:#8c735d}
+
+/* Top bar */
+.topbar{background:#231f1c;color:#f7f4ec;overflow:hidden;border-bottom:1px solid rgba(255,255,255,.05)}
+.marquee{display:flex;width:max-content;animation:marquee 28s linear infinite;padding:10px 0}
+.marquee span{font-size:.62rem;letter-spacing:.35em;text-transform:uppercase;margin:0 24px;white-space:nowrap;display:flex;align-items:center}
+.marquee span i{color:#8c735d;font-style:normal;margin-right:24px}
+@keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* Hero */
+.hero{position:relative;display:flex;flex-direction:column;overflow:hidden;color:#f7f4ec;background-color:#231f1c}
+.hero-img{display:block;width:100%;height:auto}
+.hero-veil{display:none}
+.cta-btn{display:inline-flex;align-items:center;gap:8px;background:rgba(35,31,28,.9);border:1px solid #8c735d;padding:8px 16px;transition:.3s;box-shadow:0 8px 24px rgba(0,0,0,.35)}
+.cta-btn:hover{background:#8c735d}
+.cta-btn img{width:28px;height:28px;display:block;border-radius:50%;box-shadow:0 0 0 1px rgba(140,115,93,.4)}
+.cta-btn .cta-main{font-size:.6rem;letter-spacing:.35em;text-transform:uppercase;color:#f7f4ec;line-height:1.1}
+.cta-btn .cta-sub{font-family:'Cormorant Garamond',Georgia,serif;font-style:italic;font-size:.8rem;letter-spacing:.04em;color:rgba(247,244,236,.85);line-height:1.2}
+.cta-btn:hover .cta-sub{color:#f7f4ec}
+.top-wa-btn{display:inline-flex;align-items:center;gap:8px;border:1px solid rgba(247,244,236,.4);padding:8px 16px;font-size:.62rem;letter-spacing:.35em;text-transform:uppercase;transition:.3s}
+.top-wa-btn:hover{background:#f7f4ec;color:#231f1c}
+.hero-top{position:absolute;top:0;left:0;right:0;z-index:2;display:flex;align-items:center;justify-content:space-between;padding:24px 24px 0}
+@media(min-width:768px){.hero-top{padding:32px 48px 0}}
+.burger{display:flex;flex-direction:column;align-items:flex-end;gap:5px;background:none;border:0;padding:0;cursor:pointer}
+.burger i{display:block;height:1px;width:24px;background:#f7f4ec;transition:width .3s}
+.burger i:nth-child(2){width:16px}
+.burger:hover i{width:28px}
+.top-wa{font-size:.62rem;letter-spacing:.35em;text-transform:uppercase;border-bottom:1px solid transparent;transition:border-color .3s}
+.top-wa:hover{border-bottom-color:currentColor}
+.hero-mid{position:relative;z-index:2;flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:0 24px}
+.hero-mid .eyebrow{color:rgba(247,244,236,.9);margin-bottom:16px}
+.hero-title{font-size:clamp(3rem,10vw,8rem);line-height:.95;letter-spacing:-.02em;text-shadow:0 4px 20px rgba(0,0,0,.4)}
+.divider{display:flex;align-items:center;gap:16px;margin-top:20px}
+.divider i{height:1px;width:40px;background:rgba(247,244,236,.4)}
+.divider b{color:#8c735d;font-size:1.125rem;font-weight:400}
+.hero-tag{margin-top:20px;font-size:.75rem;letter-spacing:.35em;text-transform:uppercase;color:rgba(247,244,236,.9)}
+.hero-foot{position:absolute;bottom:0;left:0;right:0;z-index:2;padding-bottom:40px;display:flex;flex-direction:column;align-items:center;gap:12px;color:rgba(247,244,236,.7)}
+.hero-foot span{font-size:.6rem;letter-spacing:.35em;text-transform:uppercase}
+.scroll-line{width:1px;height:40px;background:rgba(247,244,236,.4)}
+
+/* Colección */
+.grid-head{display:flex;flex-direction:column;align-items:center;text-align:center;gap:16px;margin-bottom:56px}
+.grid-head h2{font-size:2.25rem;line-height:1.1;margin-top:0}
+@media(min-width:768px){.grid-head h2{font-size:3rem}}
+.grid-head .grid-sub{font-family:'Cormorant Garamond',Georgia,serif;font-style:italic;font-weight:300;color:#8c735d;font-size:1.125rem}
+@media(min-width:768px){.grid-head .grid-sub{font-size:1.5rem}}
+.filters{display:flex;flex-wrap:wrap;justify-content:center;gap:8px}
+.filter{font-family:inherit;font-size:.62rem;letter-spacing:.35em;text-transform:uppercase;padding:9px 18px;border:1px solid #e2dbcb;background:transparent;color:#231f1c;cursor:pointer;transition:.3s;border-radius:9999px}
+.filter:hover{border-color:#231f1c}
+.filter.active{background:#231f1c;color:#f7f4ec;border-color:#231f1c}
+.grid{display:grid;grid-template-columns:1fr;gap:56px 32px}
+@media(min-width:640px){.grid{grid-template-columns:1fr 1fr}}
+@media(min-width:1024px){.grid{grid-template-columns:1fr 1fr 1fr}}
+.card-media{position:relative;overflow:hidden;background:#efe9dc;aspect-ratio:4/5}
+.card-media .carousel-track{width:100%;height:100%;position:relative}
+.card-media .carousel-slide{position:absolute;inset:0;width:100%;height:100%;display:flex;align-items:center;justify-content:center;opacity:0;visibility:hidden;transition:opacity .25s ease}
+.card-media .carousel-slide.active{opacity:1;visibility:visible}
+.card-media .carousel-slide img{width:100%;height:100%;object-fit:contain;object-position:center;display:block}
+.card-media .carousel-arrow{position:absolute;top:50%;transform:translateY(-50%);z-index:4;width:34px;height:34px;border:1px solid rgba(35,31,28,.18);border-radius:50%;background:rgba(247,244,236,.88);color:#231f1c;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:18px;line-height:1}
+.card-media .carousel-arrow.prev{left:10px}.card-media .carousel-arrow.next{right:10px}
+.card-media .carousel-dots{position:absolute;left:50%;bottom:10px;transform:translateX(-50%);z-index:4;display:flex;gap:5px;padding:5px 8px;border-radius:20px;background:rgba(247,244,236,.78)}
+.card-media .carousel-dot{width:6px;height:6px;border:0;border-radius:50%;padding:0;background:#b9afa1;cursor:pointer}
+.card-media .carousel-dot.active{background:#231f1c}
+.card-media .carousel-count{position:absolute;right:10px;top:10px;z-index:4;font-size:.55rem;letter-spacing:.08em;background:rgba(247,244,236,.88);padding:5px 7px;color:#231f1c}
+.card:hover .card-media img{transform:none}
+.card-tag{position:absolute;top:16px;left:16px;font-size:.6rem;letter-spacing:.35em;text-transform:uppercase;background:rgba(247,244,236,.85);color:#231f1c;padding:6px 12px}
+.card-body{padding-top:20px}
+.card-body h3{font-size:1.5rem;line-height:1.15}
+.card-body p{margin-top:8px;font-size:.8rem;line-height:1.6;color:#6e6358}
+.card-actions{margin-top:20px;display:flex;flex-direction:column;gap:8px}
+.price{font-size:.9rem;font-weight:600;margin-bottom:4px;display:block}
+.btn-order{display:block;text-align:center;background:#231f1c;color:#f7f4ec;padding:12px;font-size:.6rem;letter-spacing:.25em;text-transform:uppercase;transition:.3s}
+.btn-order:hover{background:#8c735d}
+
+/* Propósito */
+.purpose{background:#efe9dc}
+.purpose .eyebrow{margin-bottom:20px}
+.purpose h2{font-size:1.875rem;line-height:1.15;max-width:900px;margin:0 auto;text-align:center}
+@media(min-width:768px){.purpose h2{font-size:3rem}}
+.purpose h2 em{font-style:italic;color:#8c735d}
+.features{margin-top:64px;display:grid;grid-template-columns:1fr;gap:1px;background:#e2dbcb;border:1px solid #e2dbcb}
+@media(min-width:768px){.features{grid-template-columns:1fr 1fr 1fr}}
+.feature{background:#efe9dc;padding:40px;text-align:center}
+.feature svg{color:#8c735d;margin:0 auto 20px}
+.feature h3{font-family:'Inter',sans-serif;font-size:.7rem;letter-spacing:.35em;text-transform:uppercase;margin-bottom:8px}
+.feature p{font-size:.8rem;line-height:1.6;color:#6e6358;max-width:220px;margin:0 auto}
+
+/* FAQ */
+.faq .center{text-align:center;margin-bottom:56px}
+.faq h2{font-size:2.25rem;margin-top:12px}
+@media(min-width:768px){.faq h2{font-size:3rem}}
+.faq-list{max-width:768px;margin:0 auto;border-top:1px solid #e2dbcb}
+.faq-item{border-bottom:1px solid #e2dbcb}
+.faq-q{width:100%;display:flex;align-items:center;justify-content:space-between;gap:24px;padding:24px 0;background:none;border:0;cursor:pointer;text-align:left;font-family:inherit}
+.faq-q .q{font-family:'Cormorant Garamond',Georgia,serif;font-size:1.25rem;color:#231f1c;transition:color .3s}
+@media(min-width:768px){.faq-q .q{font-size:1.5rem}}
+.faq-item.open .q{color:#8c735d}
+.sign{color:#8c735d;font-size:1.125rem;line-height:1}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .4s cubic-bezier(.16,1,.3,1)}
+.faq-a p{padding:0 40px 24px 0;font-size:.85rem;line-height:1.7;color:#6e6358}
+
+/* Contacto / Formulario de pedidos */
+.contact-wrap{padding:0 24px 80px}
+@media(min-width:768px){.contact-wrap{padding:0 48px 112px}}
+.contact{position:relative;max-width:1024px;margin:0 auto;overflow:hidden}
+.contact-bg{position:absolute;inset:0}
+.contact-bg img{width:100%;height:100%;object-fit:cover}
+.contact-veil{position:absolute;inset:0;background:rgba(35,31,28,.8)}
+.contact-inner{position:relative;z-index:2;padding:60px 32px;color:#f7f4ec}
+@media(min-width:768px){.contact-inner{padding:80px 64px}}
+.contact-inner .eyebrow{color:rgba(247,244,236,.8)}
+.contact-inner h2{font-size:1.875rem;line-height:1.15}
+@media(min-width:768px){.contact-inner h2{font-size:2.5rem}}
+.contact-inner h2 em{font-style:italic;color:rgba(247,244,236,.9)}
+.contact-inner > p{margin-top:16px;font-size:.85rem;line-height:1.7;color:rgba(247,244,236,.8);max-width:560px}
+.order-form{margin-top:32px;display:grid;grid-template-columns:1fr;gap:16px}
+@media(min-width:768px){.order-form{grid-template-columns:1fr 1fr}}
+.form-group{display:flex;flex-direction:column;gap:6px}
+.form-group.full{grid-column:1/-1}
+.form-group label{font-size:.6rem;letter-spacing:.3em;text-transform:uppercase;color:rgba(247,244,236,.8)}
+.form-group input,.form-group select,.form-group textarea{width:100%;padding:12px 16px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.2);color:#f7f4ec;font-family:inherit;font-size:.85rem}
+.form-group input:focus,.form-group select:focus,.form-group textarea:focus{outline:none;border-color:#8c735d}
+.form-group select option{background:#231f1c;color:#f7f4ec}
+.btn-submit{grid-column:1/-1;background:#f7f4ec;color:#231f1c;padding:16px;font-size:.65rem;letter-spacing:.35em;text-transform:uppercase;border:0;cursor:pointer;transition:.3s;margin-top:8px}
+.btn-submit:hover{background:#8c735d;color:#f7f4ec}
+
+/* Footer */
+footer{background:#231f1c;color:#f7f4ec;padding:64px 24px 32px}
+@media(min-width:768px){footer{padding:64px 48px 32px}}
+.foot-top{display:flex;flex-direction:column;gap:40px;padding-bottom:48px;border-bottom:1px solid rgba(255,255,255,.1)}
+@media(min-width:768px){.foot-top{flex-direction:row;align-items:flex-start;justify-content:space-between}}
+.foot-brand{max-width:340px}
+.foot-brand h3{font-size:1.875rem;letter-spacing:.2em}
+.foot-brand h3 b{color:#8c735d;font-weight:400}
+.foot-brand .luxe{margin-top:16px;font-size:.75rem;color:rgba(247,244,236,.6)}
+.foot-brand p{margin-top:20px;font-size:.8rem;line-height:1.7;color:rgba(247,244,236,.55)}
+.foot-cols{display:grid;grid-template-columns:1fr 1fr;gap:40px}
+@media(min-width:768px){.foot-cols{gap:64px}}
+.foot-cols h4{font-family:'Inter',sans-serif;font-size:.6rem;letter-spacing:.35em;text-transform:uppercase;color:rgba(247,244,236,.4);margin:0 0 16px;font-weight:400}
+.foot-cols li{list-style:none;margin-bottom:10px;font-size:.8rem;color:rgba(247,244,236,.75)}
+.foot-bot{padding-top:32px;display:flex;flex-direction:column;gap:12px;align-items:center;justify-content:space-between;font-size:.65rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(247,244,236,.45)}
+@media(min-width:768px){.foot-bot{flex-direction:row}}
+
+/* Menú */
+.menu{position:fixed;inset:0;z-index:60;display:none}
+.menu.open{display:block}
+.menu-veil{position:absolute;inset:0;background:rgba(35,31,28,.45)}
+.menu-panel{position:absolute;top:0;left:0;height:100%;width:400px;max-width:85%;background:#f7f4ec;overflow-y:auto;padding:32px;transform:translateX(-100%);transition:transform .5s cubic-bezier(.16,1,.3,1);box-shadow:0 20px 50px rgba(0,0,0,.3)}
+.menu.open .menu-panel{transform:translateX(0)}
+@media(min-width:768px){.menu-panel{padding:40px}}
+.menu-head{display:flex;align-items:center;justify-content:space-between;padding-bottom:24px;border-bottom:1px solid #e2dbcb}
+.menu-head strong{font-family:'Cormorant Garamond',Georgia,serif;font-weight:400;font-size:1.5rem;letter-spacing:.2em}
+.menu-head strong b{color:#8c735d;font-weight:400}
+.menu-head button{background:none;border:0;cursor:pointer;color:#231f1c;font-size:1.25rem;line-height:1}
+.menu-group{margin-top:32px}
+.menu-group p{font-size:.65rem;letter-spacing:.35em;text-transform:uppercase;color:#6e6358;margin-bottom:12px}
+.menu-group li{list-style:none;border-bottom:1px solid #e2dbcb}
+.menu-group a{display:block;padding:12px 0;font-family:'Cormorant Garamond',Georgia,serif;font-size:1.25rem;transition:.3s}
+.menu-group a:hover{color:#8c735d;padding-left:8px}
+.menu-foot{margin-top:40px;font-size:.65rem;letter-spacing:.35em;text-transform:uppercase;color:#6e6358}
+</style>
+</head>
+<body>
+
+<!-- Menú lateral -->
+<div class="menu" id="menu">
+  <div class="menu-veil" id="menuVeil"></div>
+  <aside class="menu-panel">
+    <div class="menu-head">
+      <strong>EMUNAH <b>&#10022;</b></strong>
+      <button id="menuClose" aria-label="Cerrar menú">&times;</button>
+    </div>
+    <div class="menu-group">
+      <p>Camisetas · Fe</p>
+      <ul>
+        <li><a href="#em-cam-001">Todo lo puedo en Cristo</a></li>
+        <li><a href="#em-cam-002">Por fe caminamos</a></li>
+        <li><a href="#em-cam-003">Confía en el Señor</a></li>
+        <li><a href="#em-cam-004">No temas</a></li>
+      </ul>
+    </div>
+    <div class="menu-group">
+      <p>Camisetas · Firmeza</p>
+      <ul>
+        <li><a href="#em-cam-005">Él me da fuerzas</a></li>
+        <li><a href="#em-cam-006">Permanece firme</a></li>
+        <li><a href="#em-cam-007">Sigue adelante</a></li>
+        <li><a href="#em-cam-008">Dios tiene un propósito</a></li>
+      </ul>
+    </div>
+    <div class="menu-group">
+      <p>Termos</p>
+      <ul>
+        <li><a href="#termos">Termo Metálico Propósito</a></li>
+      </ul>
+    </div>
+    <div class="menu-group">
+      <p>Tazas</p>
+      <ul>
+        <li><a href="#tazas">Taza Cerámica Emunah</a></li>
+      </ul>
+    </div>
+    <div class="menu-group">
+      <p>Accesorios</p>
+      <ul>
+        <li><a href="#mousepads">Mouse Pad Geometry</a></li>
+      </ul>
+    </div>
+    <div class="menu-group">
+      <p>Navegación</p>
+      <ul>
+        <li><a href="#coleccion">Nuestra colección</a></li>
+        <li><a href="#proposito">Nuestro propósito</a></li>
+        <li><a href="#faq">Preguntas frecuentes</a></li>
+        <li><a href="#contacto">Inicia tu pedido</a></li>
+      </ul>
+    </div>
+    <p class="menu-foot">Vive tu fe</p>
+  </aside>
+</div>
+
+<!-- Hero -->
+<section class="hero">
+  <img class="hero-img" src="https://media.base44.com/images/public/6aac0ecc054ce32a04f11340/ab36c8f26_portadajpg.jpeg" alt="EMUNAH · Vive tu fe">
+  <header class="hero-top">
+    <button class="burger" id="burger" aria-label="Abrir menú"><i></i><i></i><i></i></button>
+  </header>
+  <a class="hero-foot" href="#coleccion">
+    <span>Descubrir colección</span>
+    <span class="scroll-line"></span>
+  </a>
+</section>
+
+<!-- Colección -->
+<section class="section" id="coleccion">
+  <div class="inner">
+    <div class="grid-head">
+      <p class="eyebrow">La colección</p>
+      <h2>Lleva tu fe con estilo</h2>
+      <p class="grid-sub">Diseños exclusivos que declaran tu propósito</p>
+      <div class="filters" id="filters">
+        <button class="filter active" data-filter="Todo">Todo</button>
+        <button class="filter" data-filter="Camisetas">Camisetas</button>
+        <button class="filter" data-filter="Termos">Termos</button>
+        <button class="filter" data-filter="Tazas">Tazas</button>
+        <button class="filter" data-filter="Accesorios">Accesorios</button>
+      </div>
+      <div class="filters" id="subFilters" style="display:none">
+        <button class="filter active" data-subfilter="Todo">Todas</button>
+        <button class="filter" data-subfilter="Fe">Colección Fe</button>
+        <button class="filter" data-subfilter="Firmeza">Colección Firmeza</button>
+      </div>
+    </div>
+    <div class="grid" id="grid"></div>
+  </div>
+</section>
+
+<!-- Propósito -->
+<section class="section purpose" id="proposito">
+  <div class="inner">
+    <p class="eyebrow" style="text-align:center">Nuestro propósito</p>
+    <h2>Emunah significa <em>fe</em>. Creemos que lo que llevas puesto puede ser también una declaración silenciosa de aquello en lo que crees.</h2>
+    <div class="features">
+      <div class="feature">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></svg>
+        <h3>Compra segura</h3>
+        <p>Proceso directo por WhatsApp, sin intermediarios.</p>
+      </div>
+      <div class="feature">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3-1.9 5.8a2 2 0 0 1-1.3 1.3L3 12l5.8 1.9a2 2 0 0 1 1.3 1.3L12 21l1.9-5.8a2 2 0 0 1 1.3-1.3L21 12l-5.8-1.9a2 2 0 0 1-1.3-1.3Z"/></svg>
+        <h3>Garantía de calidad</h3>
+        <p>Cuidado meticuloso en cada prenda y cada acabado.</p>
+      </div>
+      <div class="feature">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"><path d="M14 18V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v11a1 1 0 0 0 1 1h2"/><path d="M15 18H9"/><path d="M19 18h2a1 1 0 0 0 1-1v-3.65a1 1 0 0 0-.22-.62l-3.48-4.35A1 1 0 0 0 17.52 8H14"/><circle cx="17" cy="18" r="2"/><circle cx="7" cy="18" r="2"/></svg>
+        <h3>Contra entrega</h3>
+        <p>Entregas directas y pago contra entrega local en Sincelejo.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="section faq" id="faq">
+  <div class="center">
+    <p class="eyebrow">Antes de pedir</p>
+    <h2>Preguntas frecuentes</h2>
+  </div>
+  <div class="faq-list" id="faqList"></div>
+</section>
+
+<!-- Contacto -->
+<div class="contact-wrap">
+  <section class="contact" id="contacto">
+    <div class="contact-bg">
+      <img src="https://media.base44.com/images/public/6aac0ecc054ce32a04f11340/81d037ccc_generated_image.png" alt="">
+      <div class="contact-veil"></div>
+    </div>
+    <div class="contact-inner">
+      <p class="eyebrow">Hablemos</p>
+      <h2>Inicia tu pedido por<br><em>WhatsApp</em></h2>
+      <p>Escríbenos para coordinar tu pedido. Atendemos entregas locales en Sincelejo y transferencias directas (Nequi / Bancolombia).</p>
+
+      <a class="cta-btn" href="https://wa.me/573000000000?text=Hola%2C%20quiero%20iniciar%20mi%20pedido%20en%20Emunah" target="_blank" rel="noreferrer">
+        <img src="https://media.base44.com/images/public/6aac0ecc054ce32a04f11340/f6c0ff993_IconoDeWhatsappLogotipoDeWhatsappPNGdibujosImgenesPrediseadasDeWhatsappLogoIconosDeWhatsappPNGyVectorparaDescargarGratis_Pngtree.png" alt="WhatsApp">
+        <span><span class="cta-main">Inicia tu pedido</span><br><span class="cta-sub">personaliza tu fe aquí</span></span>
+      </a>
+    </div>
+  </section>
+</div>
+
+<!-- Footer -->
+<footer>
+  <div class="inner">
+    <div class="foot-top">
+      <div class="foot-brand">
+        <h3>EMUNAH <b>&#10022;</b></h3>
+        <p class="luxe">Vive tu fe</p>
+        <p>Diseños con propósito. Camisetas, accesorios y objetos que declaran, en silencio, aquello en lo que crees.</p>
+      </div>
+      <div class="foot-cols">
+        <div>
+          <h4>Colección</h4>
+          <ul>
+            <li><a href="#em-cam-001">Todo lo puedo en Cristo</a></li>
+            <li><a href="#em-cam-002">Por fe caminamos</a></li>
+            <li><a href="#em-cam-005">Él me da fuerzas</a></li>
+            <li><a href="#em-cam-006">Permanece firme</a></li>
+            <li><a href="#tazas">Tazas Cerámicas</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Ayuda</h4>
+          <ul>
+            <li><a href="#faq">Preguntas frecuentes</a></li>
+            <li><a href="#proposito">Nuestro propósito</a></li>
+            <li><a href="#contacto">Inicia tu pedido</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="foot-bot">
+      <p>EMUNAH &#10022; Todos los derechos reservados</p>
+      <p>Hecho con intención</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* ============================================================
+   EMUNAH · Tienda estática
+   Para actualizar la tienda cambia los datos de abajo:
+   - PRODUCTOS: cada producto con nombre, precio, categoria,
+     descripcion, imagen y slug.
+   - FAQS: preguntas frecuentes.
+   ============================================================ */
+var PRODUCTOS = [
+  {
+    "descripcion": "Acabado mate · Cerámica artesanal · 350 ml. El primer sorbo del día, con intención.",
+    "precio": "$ 30.000",
+    "coleccion": null,
+    "categoria": "Tazas",
+    "imagen": "https://media.base44.com/images/public/6aac0ecc054ce32a04f11340/c71f55641_tazaceramicaEMUNAH.png",
+    "nombre": "Taza Cerámica Emunah",
+    "slug": "tazas",
+    "id": "6aac1553424153abcdb1942f",
+    "created_date": "2026-09-17T16:29:07.305000",
+    "updated_date": "2026-10-02T22:09:05.146000",
+    "created_by_id": "6aac0ed0054ce32a04f11349",
+    "is_sample": false
+  },
+  {
+    "descripcion": "Superficie de precisión con diseño  sagrado. El detalle sobre tu escritorio.",
+    "precio": "$ 15.000",
+    "coleccion": null,
+    "categoria": "Accesorios",
+    "imagen": "https://base44.app/api/apps/6aac0ecc054ce32a04f11340/files/mp/public/6aac0ecc054ce32a04f11340/7f008ed32_mockup-merch-mousepad.png",
+    "nombre": "Mouse Pad Confía",
+    "slug": "mousepads",
+    "id": "6aac1553424153abcdb1942e",
+    "created_date": "2026-09-17T16:29:07.305000",
+    "updated_date": "2026-10-01T21:41:47.906000",
+    "created_by_id": "6aac0ed0054ce32a04f11349",
+    "is_sample": false
+  },
+  {
+    "descripcion": "",
+    "precio": "$ 38.000",
+    "coleccion": null,
+    "categoria": "Termos",
+    "imagen": "https://base44.app/api/apps/6aac0ecc054ce32a04f11340/files/mp/public/6aac0ecc054ce32a04f11340/82a6f1cc9_WhatsAppImage2026-09-29at55700PM1.jpeg",
+    "nombre": "Termo Metálico Jesus Is King",
+    "slug": "termos",
+    "id": "6abdb49598e71c9a0f2a8cba",
+    "created_date": "2026-10-01T01:17:09.243000",
+    "updated_date": "2026-10-01T01:31:32.801000",
+    "created_by_id": "6aac0ed0054ce32a04f11349",
+    "is_sample": false
+  },
+  {
+    "descripcion": "",
+    "precio": "$ 15.000",
+    "coleccion": null,
+    "categoria": "Termos",
+    "imagen": "https://base44.app/api/apps/6aac0ecc054ce32a04f11340/files/mp/public/6aac0ecc054ce32a04f11340/79000ac7e_termojesusisking.jpg",
+    "nombre": "Termo Metálico Jesus Is King letras negras",
+    "slug": "termos",
+    "id": "6abdb912f4994de9fdce1089",
+    "created_date": "2026-10-01T01:36:18.269000",
+    "updated_date": "2026-10-01T01:36:18.269000",
+    "created_by_id": "6aac0ed0054ce32a04f11349",
+    "is_sample": false
+  },
+  {
+    "descripcion": "",
+    "precio": "$ 38.000",
+    "coleccion": null,
+    "categoria": "Termos",
+    "imagen": "https://base44.app/api/apps/6aac0ecc054ce32a04f11340/files/mp/public/6aac0ecc054ce32a04f11340/b26ea36ca_termofe.png",
+    "nombre": "Termo Metálico Fe",
+    "slug": "termos",
+    "id": "6abdbb919d0ceb6d7b29c716",
+    "created_date": "2026-10-01T01:46:57.251000",
+    "updated_date": "2026-10-01T01:46:57.251000",
+    "created_by_id": "6aac0ed0054ce32a04f11349",
+    "is_sample": false
+  },
+  {
+    "descripcion": "",
+    "precio": "$ 38.000",
+    "coleccion": null,
+    "categoria": "Termos",
+    "imagen": "https://base44.app/api/apps/6aac0ecc054ce32a04f11340/files/mp/public/6aac0ecc054ce32a04f11340/acbc3f233_Elmeamoprimero.jpg",
+    "nombre": "Termo Metálico El me amo Primero",
+    "slug": "termos",
+    "id": "6abdbbfdb21b0ed775290165",
+    "created_date": "2026-10-01T01:48:45.817000",
+    "updated_date": "2026-10-01T01:48:45.817000",
+    "created_by_id": "6aac0ed0054ce32a04f11349",
+    "is_sample": false
+  },
+  {
+    "descripcion": "",
+    "precio": "$ 38.000",
+    "coleccion": null,
+    "categoria": "Termos",
+    "imagen": "https://base44.app/api/apps/6aac0ecc054ce32a04f11340/files/mp/public/6aac0ecc054ce32a04f11340/f86e8f466_termoelnosamo2.png",
+    "nombre": "Termo Metálico El nos amo Primero",
+    "slug": "termos",
+    "id": "6abdbc3580cb20c3bcaec83f",
+    "created_date": "2026-10-01T01:49:41.583000",
+    "updated_date": "2026-10-01T01:49:41.583000",
+    "created_by_id": "6aac0ed0054ce32a04f11349",
+    "is_sample": false
+  },
+  {
+    "descripcion": "",
+    "precio": "$ 58.000",
+    "coleccion": null,
+    "categoria": "Camisetas",
+    "imagen": "https://base44.app/api/apps/6aac0ecc054ce32a04f11340/files/mp/public/6aac0ecc054ce32a04f11340/8271af15c_camisetaoversizeFe.png",
+    "nombre": "Camiseta Oversize FE",
+    "slug": "",
+    "id": "6abed4abe907043b0c3011c3",
+    "created_date": "2026-10-01T21:46:19.615000",
+    "updated_date": "2026-10-02T21:23:15.603000",
+    "created_by_id": "6aac0ed0054ce32a04f11349",
+    "is_sample": false
+  }
+];
+
+var FAQS = [
+  {
+    "q": "¿Cómo funcionan los pagos y las entregas?",
+    "a": "Realizamos entregas locales directas con pago contra entrega en Sincelejo. También aceptamos transferencias directas (Nequi o Bancolombia) coordinadas de forma segura."
+  },
+  {
+    "q": "¿Cuánto tiempo toma el envío?",
+    "a": "Las entregas locales en Sincelejo se coordinan de manera rápida tras confirmar el pedido en el formulario."
+  },
+  {
+    "q": "¿Hacen diseños personalizados?",
+    "a": "Sí, puedes dejarnos tus observaciones en el campo de detalles del formulario para evaluar tu requerimiento especial."
+  }
+];
+
+var WA_NUMBER = "573000000000";
+function waLink(text){ return "https://wa.me/" + WA_NUMBER + "?text=" + encodeURIComponent(text); }
+
+function esc(s){
+  return String(s == null ? "" : s)
+    .replace(/&/g, "&amp;").replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+}
+
+var currentFilter = "Todo";
+var currentSubFilter = "Todo";
+var selectedSlug = null;
+
+function applySubVisibility(){
+  var sf = document.getElementById("subFilters");
+  if(sf) sf.style.display = currentFilter === "Camisetas" ? "flex" : "none";
+}
+
+function renderGrid(){
+  var grid = document.getElementById("grid");
+  var items = PRODUCTOS.filter(function(p){
+    if(currentFilter === "Todo") return true;
+    if(currentFilter === "Camisetas"){
+      if(p.categoria !== "Camisetas") return false;
+      if(currentSubFilter === "Todo") return true;
+      return p.coleccion === currentSubFilter;
+    }
+    return p.categoria === currentFilter;
+  });
+  if(selectedSlug){
+    items = items.filter(function(p){ return (p.slug || p.id) === selectedSlug; });
+  }
+  var back = selectedSlug ? '<button type="button" id="verTodo" class="filter active" style="grid-column:1/-1;justify-self:start;margin-bottom:16px">&#8592; Ver toda la colección</button>' : '';
+  if(!items.length){
+    grid.innerHTML = back + '<p style="grid-column:1/-1;color:#6e6358;font-size:.85rem">Aún no hay productos en esta categoría.</p>';
+    bindBack();
+    return;
+  }
+  grid.innerHTML = back + items.map(function(p){
+    var id = p.slug || p.id || "";
+    var imgs = Array.isArray(p.imagenes) && p.imagenes.length ? p.imagenes : (p.imagen ? [p.imagen] : []);
+    if(!imgs.length) imgs=[""];
+    var media='<div class="card-media"><div class="carousel-track">';
+    imgs.forEach(function(src,i){ media+='<div class="carousel-slide '+(i===0?'active':'')+'"><img loading="lazy" src="'+esc(src)+'" alt="'+esc(p.nombre)+' · foto '+(i+1)+'"></div>'; });
+    if(imgs.length>1){
+      media+='<button type="button" class="carousel-arrow prev" data-carousel="'+esc(id)+'" data-dir="-1" aria-label="Foto anterior">&#8249;</button>';
+      media+='<button type="button" class="carousel-arrow next" data-carousel="'+esc(id)+'" data-dir="1" aria-label="Siguiente foto">&#8250;</button>';
+      media+='<div class="carousel-dots">';
+      imgs.forEach(function(_,i){media+='<button type="button" class="carousel-dot '+(i===0?'active':'')+'" data-carousel="'+esc(id)+'" data-index="'+i+'" aria-label="Foto '+(i+1)+'"></button>';});
+      media+='</div><span class="carousel-count">1 / '+imgs.length+'</span>';
+    }
+    media+='</div><span class="card-tag">'+esc(p.categoria)+'</span></div>';
+    return '<article class="card" id="' + esc(id) + '">'+media
+      + '<div class="card-body"><h3>' + esc(p.nombre) + '</h3>'
+      + '<p>' + esc(p.descripcion) + '</p>'
+      + '<div class="card-actions"><span class="price">' + esc(p.precio) + '</span>'
+      + '<a class="btn-order" href="' + waLink("Hola, quiero pedir: " + p.nombre) + '" target="_blank" rel="noreferrer">Pedir por WhatsApp</a>'
+      + '</div></div></article>';
+  }).join("");
+  bindBack();
+  bindCarousels();
+}
+
+function bindBack(){
+  var b = document.getElementById("verTodo");
+  if(b) b.addEventListener("click", function(){
+    selectedSlug = null;
+    try { if(history.replaceState) history.replaceState(null, "", "#coleccion"); } catch(e) {}
+    renderGrid();
+  });
+}
+
+function bindCarousels(){
+  var grid=document.getElementById("grid");
+  if(!grid) return;
+  Array.prototype.forEach.call(grid.querySelectorAll(".card-media"),function(media){
+    var slides=media.querySelectorAll(".carousel-slide"),dots=media.querySelectorAll(".carousel-dot"),count=media.querySelector(".carousel-count");
+    if(slides.length<2) return;
+    var index=0;
+    function show(n){ index=(n+slides.length)%slides.length; Array.prototype.forEach.call(slides,function(x,i){x.classList.toggle("active",i===index)}); Array.prototype.forEach.call(dots,function(x,i){x.classList.toggle("active",i===index)}); if(count) count.textContent=(index+1)+" / "+slides.length; }
+    Array.prototype.forEach.call(media.querySelectorAll(".carousel-arrow"),function(btn){btn.addEventListener("click",function(e){e.preventDefault();e.stopPropagation();show(index+parseInt(btn.getAttribute("data-dir"),10));});});
+    Array.prototype.forEach.call(dots,function(btn){btn.addEventListener("click",function(e){e.preventDefault();e.stopPropagation();show(parseInt(btn.getAttribute("data-index"),10));});});
+    var startX=null; media.addEventListener("touchstart",function(e){if(e.touches.length)startX=e.touches[0].clientX},{passive:true});
+    media.addEventListener("touchend",function(e){if(startX===null)return;var dx=e.changedTouches[0].clientX-startX;if(Math.abs(dx)>35)show(index+(dx<0?1:-1));startX=null},{passive:true});
+  });
+}
+
+function renderFaq(){
+  var list = document.getElementById("faqList");
+  list.innerHTML = FAQS.map(function(f, i){
+    return '<div class="faq-item' + (i === 0 ? ' open' : '') + '">'
+      + '<button class="faq-q" type="button"><span class="q">' + esc(f.q) + '</span>'
+      + '<span class="sign">' + (i === 0 ? '\u2212' : '+') + '</span></button>'
+      + '<div class="faq-a"><p>' + esc(f.a) + '</p></div></div>';
+  }).join("");
+  var items = Array.prototype.slice.call(list.querySelectorAll(".faq-item"));
+  items.forEach(function(it){
+    var body = it.querySelector(".faq-a");
+    var sign = it.querySelector(".sign");
+    if(it.classList.contains("open")){ body.style.maxHeight = body.scrollHeight + "px"; }
+    it.querySelector(".faq-q").addEventListener("click", function(){
+      var wasOpen = it.classList.contains("open");
+      items.forEach(function(o){
+        o.classList.remove("open");
+        o.querySelector(".faq-a").style.maxHeight = null;
+        o.querySelector(".sign").textContent = "+";
+      });
+      if(!wasOpen){
+        it.classList.add("open");
+        body.style.maxHeight = body.scrollHeight + "px";
+        sign.textContent = "\u2212";
+      }
+    });
+  });
+}
+
+document.getElementById("filters").addEventListener("click", function(e){
+  var b = e.target.closest(".filter");
+  if(!b || !b.getAttribute("data-filter")) return;
+  Array.prototype.forEach.call(document.querySelectorAll("#filters .filter"), function(x){ x.classList.remove("active"); });
+  b.classList.add("active");
+  currentFilter = b.getAttribute("data-filter");
+  currentSubFilter = "Todo";
+  Array.prototype.forEach.call(document.querySelectorAll("#subFilters .filter"), function(x){ x.classList.remove("active"); });
+  var firstSub = document.querySelector("#subFilters .filter");
+  if(firstSub) firstSub.classList.add("active");
+  applySubVisibility();
+  selectedSlug = null;
+  renderGrid();
+});
+
+document.getElementById("subFilters").addEventListener("click", function(e){
+  var b = e.target.closest(".filter");
+  if(!b) return;
+  Array.prototype.forEach.call(document.querySelectorAll("#subFilters .filter"), function(x){ x.classList.remove("active"); });
+  b.classList.add("active");
+  currentSubFilter = b.getAttribute("data-subfilter");
+  selectedSlug = null;
+  renderGrid();
+});
+
+function esProducto(h){
+  return PRODUCTOS.some(function(p){ return (p.slug || p.id) === h; });
+}
+
+var menu = document.getElementById("menu");
+document.getElementById("burger").addEventListener("click", function(){ menu.classList.add("open"); });
+document.getElementById("menuClose").addEventListener("click", function(){ menu.classList.remove("open"); });
+document.getElementById("menuVeil").addEventListener("click", function(){ menu.classList.remove("open"); });
+Array.prototype.forEach.call(menu.querySelectorAll("a"), function(a){
+  a.addEventListener("click", function(){
+    menu.classList.remove("open");
+    var h = (a.getAttribute("href") || "").replace("#", "");
+    if(esProducto(h)){
+      selectedSlug = h;
+      setTimeout(renderGrid, 0);
+    }
+  });
+});
+
+function applyHash(){
+  var h = decodeURIComponent((location.hash || "").replace("#", ""));
+  selectedSlug = PRODUCTOS.some(function(p){ return (p.slug || p.id) === h; }) ? h : null;
+}
+
+applyHash();
+window.addEventListener("hashchange", function(){ applyHash(); renderGrid(); });
+
+applyHash();
+applySubVisibility();
+renderGrid();
+renderFaq();
+</script>
+</body>
+</html>
