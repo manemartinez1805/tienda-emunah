@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>EMUNAH · Vive tu fe</title>
 <meta name="description" content="EMUNAH · Diseños con propósito: camisetas, accesorios y objetos que llevan contigo aquello en lo que crees.">
-<link rel="icon" type="image/png" href=". /favicon.png">
+<link rel="icon" type="image/png" href="https://media.base44.com/images/public/6aac0ecc054ce32a04f11340/958403ddf_LogoEMUNAHpng.png">
 <link rel="apple-touch-icon" href="https://media.base44.com/images/public/6aac0ecc054ce32a04f11340/958403ddf_LogoEMUNAHpng.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -319,7 +319,7 @@ footer{background:#231f1c;color:#f7f4ec;padding:64px 24px 32px}
 <div class="contact-wrap">
   <section class="contact" id="contacto">
     <div class="contact-bg">
-      <img src="https://media.base44.com/images/public/6aac0ecc054ce32a04f11340/81d037ccc_generated_image.png" alt="">
+      <img src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?auto=format&fit=crop&w=1600&q=80" alt="">
       <div class="contact-veil"></div>
     </div>
     <div class="contact-inner">
@@ -383,15 +383,14 @@ footer{background:#231f1c;color:#f7f4ec;padding:64px 24px 32px}
 var PRODUCTOS = [
   {
     "descripcion": "Acabado mate · Cerámica artesanal · 350 ml. El primer sorbo del día, con intención.",
-    "precio": "$ 30.000",
-    "coleccion": null,
-    "categoria": "Tazas",
     "imagen": "https://media.base44.com/images/public/6aac0ecc054ce32a04f11340/c71f55641_tazaceramicaEMUNAH.png",
+    "precio": "$ 49.000",
     "nombre": "Taza Cerámica Emunah",
     "slug": "tazas",
+    "categoria": "Tazas",
     "id": "6aac1553424153abcdb1942f",
     "created_date": "2026-09-17T16:29:07.305000",
-    "updated_date": "2026-10-02T22:09:05.146000",
+    "updated_date": "2026-09-20T17:57:33.757000",
     "created_by_id": "6aac0ed0054ce32a04f11349",
     "is_sample": false
   },
@@ -484,12 +483,12 @@ var PRODUCTOS = [
     "precio": "$ 58.000",
     "coleccion": null,
     "categoria": "Camisetas",
-    "imagen": "https://base44.app/api/apps/6aac0ecc054ce32a04f11340/files/mp/public/6aac0ecc054ce32a04f11340/8271af15c_camisetaoversizeFe.png",
+    "imagen": "https://base44.app/api/apps/6aac0ecc054ce32a04f11340/files/mp/public/6aac0ecc054ce32a04f11340/b8a34a62e_camisetaoversizeFe-edit.png",
     "nombre": "Camiseta Oversize FE",
     "slug": "",
     "id": "6abed4abe907043b0c3011c3",
     "created_date": "2026-10-01T21:46:19.615000",
-    "updated_date": "2026-10-02T21:23:15.603000",
+    "updated_date": "2026-10-01T22:44:38.869000",
     "created_by_id": "6aac0ed0054ce32a04f11349",
     "is_sample": false
   }
@@ -555,8 +554,8 @@ function renderGrid(){
     var media='<div class="card-media"><div class="carousel-track">';
     imgs.forEach(function(src,i){ media+='<div class="carousel-slide '+(i===0?'active':'')+'"><img loading="lazy" src="'+esc(src)+'" alt="'+esc(p.nombre)+' · foto '+(i+1)+'"></div>'; });
     if(imgs.length>1){
-      media+='<button type="button" class="carousel-arrow prev" data-carousel="'+esc(id)+'" data-dir="-1" aria-label="Foto anterior">&#8249;</button>';
-      media+='<button type="button" class="carousel-arrow next" data-carousel="'+esc(id)+'" data-dir="1" aria-label="Siguiente foto">&#8250;</button>';
+      media+='<button type="button" class="carousel-arrow prev" data-carousel="'+esc(id)+'" data-dir="-1" aria-label="Foto anterior">‹</button>';
+      media+='<button type="button" class="carousel-arrow next" data-carousel="'+esc(id)+'" data-dir="1" aria-label="Siguiente foto">›</button>';
       media+='<div class="carousel-dots">';
       imgs.forEach(function(_,i){media+='<button type="button" class="carousel-dot '+(i===0?'active':'')+'" data-carousel="'+esc(id)+'" data-index="'+i+'" aria-label="Foto '+(i+1)+'"></button>';});
       media+='</div><span class="carousel-count">1 / '+imgs.length+'</span>';
@@ -677,18 +676,12 @@ function applyHash(){
 
 applyHash();
 window.addEventListener("hashchange", function(){ applyHash(); renderGrid(); });
-<!-- PIE DE PÁGINA PREMIUM EMUNAH 2026 -->
-<footer style="background-color: #1a1a1a; color: #f4f1ea; padding: 40px 20px; text-align: center; font-family: 'Inter', sans-serif; margin-top: 50px;">
-    <div style="max-width: 1200px; margin: 0 auto;">
-        <h3 style="font-family: 'Playfair Display', serif; letter-spacing: 2px; margin-bottom: 10px;">EMUNAH VIVE TU FE</h3>
-        <p style="font-size: 14px; color: #a3a3a3; margin-bottom: 20px;">Diseños con propósito: Camisetas, Termos, Tazas y Mouse Pads de colección.</p>
-        <hr style="border: 0; border-top: 1px solid #333; margin: 20px 0;">
-        <p style="font-size: 12px; color: #8c8c8c; margin: 0;">&copy; 2026 EMUNAH vive tu fe. Todos los derechos reservados. | Sincelejo, Sucre, Colombia.</p>
-    </div>
-</footer>
 
-<!-- CONECTOR ASISTENTE IA DE LA TIENDA (RUT) -->
-<script src="https://jsdelivr.net" onload="window.voiceflow.chat.load({ verify: { projectID: '659c00000000000000000000' }, url: 'https://voiceflow.com', versionID: 'production' })"></script>
-
+applyHash();
+applySubVisibility();
+renderGrid();
+renderFaq();
+</script>
 </body>
+<script src="https://jsdelivr.net" onload="window.voiceflow.chat.load({ verify: { projectID: '659c00000000000000000000' }, url: 'https://voiceflow.com', versionID: 'production' })"></script>
 </html>
