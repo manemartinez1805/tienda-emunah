@@ -684,10 +684,10 @@ renderFaq();
 </script>
 <script type="text/javascript">
   (function(d, t) {
-      var v = d.createElement(t), s = d.getElementsByTagName(t)[0];
+      var v = d.createElement(t), s = d.getElementsByTagName(t);
       v.onload = function() {
         window.voiceflow.chat.load({
-          verify: { projectID: '6acd1cfae16883ebe74492b2' },
+          verify: { projectID: '66dc1cfae16883ebe74492b2' },
           url: 'https://voiceflow.com',
           versionID: 'production',
           theme: {
@@ -696,9 +696,6 @@ renderFaq();
             backgroundColor: '#ffffff',
             showAgentAvatar: true,
             layout: 'button'
-          },
-          user: {
-            name: 'Cliente EMUNAH'
           }
         });
       }
