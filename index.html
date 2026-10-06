@@ -687,15 +687,24 @@ renderFaq();
       var v = d.createElement(t), s = d.getElementsByTagName(t)[0];
       v.onload = function() {
         window.voiceflow.chat.load({
-          verify: { projectID: '6ac411cfae16883ebe74492b' },
-          url: 'https://general-runtime.voiceflow.com',
-          voice: {
-            url: 'https://runtime-api.voiceflow.com'
+          verify: { projectID: '6acd1cfae16883ebe74492b2' },
+          url: 'https://voiceflow.com',
+          versionID: 'production',
+          theme: {
+            primaryColor: '#c4b49e',
+            launcherColor: '#c4b49e',
+            backgroundColor: '#ffffff',
+            showAgentAvatar: true,
+            layout: 'button'
+          },
+          user: {
+            name: 'Cliente EMUNAH'
           }
         });
       }
-      v.src = 'https://cdn.voiceflow.com/widget-next/bundle.mjs'; v.type = 'text/javascript'; s.parentNode.insertBefore(v, s);
+      v.src = "https://voiceflow.com"; v.type = "text/javascript"; s.parentNode.insertBefore(v, s);
   })(document, 'script');
+</script>
 </script>
 </body>
 <!-- PIE DE PÁGINA PREMIUM EMUNAH 2026 -->
