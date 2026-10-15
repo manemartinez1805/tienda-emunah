@@ -1,0 +1,25 @@
+/* ========================================================
+   BLOQUE DE SEGURIDAD Y PROTECCIÓN ANTI-COPIA EMUNAH
+   ======================================================== */
+
+/* Desactiva por completo la selección de texto en la tienda */
+* {
+    -webkit-user-select: none; /* Safari */
+    -moz-user-select: none;    /* Firefox */
+    -ms-user-select: none;     /* IE 10+ */
+    user-select: none;         /* Estándar */
+}
+
+/* Permite escribir texto ÚNICAMENTE en barras de búsqueda, chats o formularios */
+input, textarea {
+    -webkit-user-select: text;
+    -moz-user-select: text;
+    -ms-user-select: text;
+    user-select: text;
+}
+
+/* Bloquea el arrastre y menús contextuales en las imágenes */
+img {
+    pointer-events: none;
+    -webkit-touch-callout: none; /* Bloquea guardado en móviles */
+}
