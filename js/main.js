@@ -1,3 +1,34 @@
+// 1. INICIALIZAR CONEXIÓN PÚBLICA CON SUPABASE
+const SUPABASE_URL = "https://topcqcqjzhdglotjtdcn.supabase.co/rest/v1/; // Pega aquí la API URL que encontraste
+const SUPABASE_KEY = "sb_publishable_7sxze1he_SjEPpqUgX_nJw_WTJl5f09; // Pega aquí tu clave sb_publishable_...
+
+const supabase = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+
+// 2. FUNCIÓN PARA CARGAR EL INVENTARIO EN LA PANTALLA
+async function cargarProductosEmunah() {
+    try {
+        // Consultamos de forma segura tu tabla real de productos
+        const { data: productos, error } = await supabase
+            .from('productos_emunah')
+            .select('*');
+
+        if (error) throw error;
+
+        console.log("Catálogo EMUNAH cargado con éxito:", productos);
+        
+        // Aquí tu código tomará el arreglo 'productos' para dibujar las imágenes y precios en tu HTML
+        
+    } catch (err) {
+        console.error("Error conectando con el catálogo de Supabase:", err.message);
+    }
+}
+
+// Ejecutar la carga automáticamente apenas se abra la página web
+document.addEventListener('DOMContentLoaded', cargarProductosEmunah);
+
+// ============================================================================
+// ¡ATENCIÓN!: Abajo de esto dejas intacto el código del chat ('send-btn') que guardamos antes
+// ============================================================================
 // ========================================================
 // CONECTOR DEL CHAT - EMUNAH & ANTHROPIC CLAUDE
 // ========================================================
