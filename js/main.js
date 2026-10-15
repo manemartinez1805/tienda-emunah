@@ -2,7 +2,7 @@
 const SUPABASE_URL = "https://topcqcqjzhdglotjtdcn.supabase.co/rest/v1/; // Pega aquí la API URL que encontraste
 const SUPABASE_KEY = "sb_publishable_7sxze1he_SjEPpqUgX_nJw_WTJl5f09; // Pega aquí tu clave sb_publishable_...
 
-const supabase = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
 // 2. FUNCIÓN PARA CARGAR EL INVENTARIO EN LA PANTALLA
 async function cargarProductosEmunah() {
