@@ -162,9 +162,13 @@
     }
 
     /* ===== Blindaje: sin selección, sin arrastre (excepto el input del chat) ===== */
-    html, body { -webkit-user-select: none; -moz-user-select: none; user-select: none; -webkit-touch-callout: none; }
-    img { -webkit-user-drag: none; user-drag: none; }
-    input, textarea, #chatInput { -webkit-user-select: text; -moz-user-select: text; user-select: text; }
+    /* Bloquear la selección de texto en toda la interfaz */
+    * { -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; }
+    html, body { -webkit-touch-callout: none; }
+    /* Permitir selección ÚNICAMENTE en campos de texto (input / textarea) */
+    input, textarea, #chatInput { -webkit-user-select: text; -moz-user-select: text; -ms-user-select: text; user-select: text; }
+    /* Evitar que las imágenes se arrastren o se guarden fácilmente */
+    img { pointer-events: none; -webkit-touch-callout: none; -webkit-user-drag: none; user-drag: none; }
 
     /* Botón premium CONFIRMAR PEDIDO */
     .btn-confirmar{position:relative;overflow:hidden;border-radius:2px;border:1px solid rgba(217,195,176,.5);
@@ -233,7 +237,7 @@
 <body class="select-none font-sans antialiased bg-[#f4f3ef] text-slate-800 min-h-screen flex flex-col justify-between selection:bg-crema-500 selection:text-white">
 
   <!-- HEADER / NAVBAR -->
-  <header class="sticky top-0 z-30 bg-white/90 backdrop-blur-md border-b border-crema-300/60 shadow-sm">
+  <header class="sticky top-0 z-30 bg-white border-b border-crema-300/60 shadow-sm">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex flex-wrap items-center justify-between gap-x-3 min-h-[84px] sm:min-h-24">
         
@@ -484,7 +488,7 @@
           </div>
           <div class="max-w-[85%] bg-white border border-crema-300 rounded-2xl rounded-tl-none p-3 text-xs text-slate-700 shadow-sm leading-relaxed">
             <p class="font-bold text-crema-800 mb-1">Hola, soy Rut, asesora EMUNAH</p>
-            <p>Bienvenido a <strong>EMUNAH ✦</strong>. Estoy aquí para ayudarte a elegir tus prendas y accesorios de fe. Puedes escribirme o hablarme con el micrófono 🎤 y te respondo. Selecciona cualquier producto y te ayudo con tu pedido. 📦🕊️</p>
+            <p>Bienvenido a <strong>EMUNAH ✦</strong>. Estoy aquí para ayudarte a elegir tus prendas y accesorios de fe. Puedes escribirme o hablarme con el micrófono 🎤 y te respondo. Selecciona cualquier producto y te ayudo con tu pedido. 📦</p>
           </div>
         </div>
       </div>
@@ -592,12 +596,6 @@
     // const SUPABASE_URL = 'https://TU-PROYECTO.supabase.co';
     // const SUPABASE_ANON_KEY = 'TU_SUPABASE_ANON_KEY';
 
-    // ------------------------------------------------------------
-    //  OPCIÓN RECOMENDADA: el catálogo lo lee tu servidor de Render (sin claves en este archivo).
-    //  Descomenta y pega la dirección de Render (sin barra final). Si está activa, se usa en lugar de SUPABASE_*.
-    // ------------------------------------------------------------
-    // const RENDER_BASE_URL = "AQUÍ_PEGARÉ_MI_ENLACE_DE_RENDER";
-
     // ============================================================
     //  BLINDAJE CONTRA COPIAS CASUALES
     //  (disuade al usuario común; no es una protección absoluta)
@@ -624,37 +622,6 @@
       document.addEventListener('cut', (e) => { if (!enCampoDeTexto(e.target)) e.preventDefault(); });
       document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && isCartOpen) closeCart(); });
     })();
-
-    // ============================================================
-    //  SERVIDOR DE RUT EN RENDER (descomenta y pega tu enlace cuando esté listo)
-    // ============================================================
-    // const RENDER_SERVER_URL = "AQUÍ_PEGARÉ_MI_ENLACE_DE_RENDER/chat-rut";
-
-    // Dirección del cerebro de Rut: RENDER_SERVER_URL, o RENDER_BASE_URL + '/chat-rut' si solo pegaste la base.
-    function rutEndpoint() {
-      const ok = v => v && !/AQUÍ_PEGARÉ/.test(v);
-      if (typeof RENDER_SERVER_URL !== 'undefined' && ok(RENDER_SERVER_URL)) return String(RENDER_SERVER_URL);
-      if (typeof RENDER_BASE_URL !== 'undefined' && ok(RENDER_BASE_URL)) return String(RENDER_BASE_URL).replace(/\/+$/, '') + '/chat-rut';
-      return '';
-    }
-
-    // Envía el mensaje (y los últimos turnos) al servidor. Responde JSON: { "reply": "texto", "whatsapp": true|false }
-    const rutHistory = [];
-    async function askRutServer(message) {
-      const url = rutEndpoint();
-      if (!url) throw new Error('sin servidor de Rut');
-      const res = await fetch(url, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ message, history: rutHistory.slice(-8) })
-      });
-      if (!res.ok) throw new Error('Servidor de Rut: HTTP ' + res.status);
-      const data = await res.json();
-      const reply = String(data.reply || '');
-      if (reply) { rutHistory.push({ role: 'user', text: message }, { role: 'rut', text: reply }); }
-      return { reply, whatsapp: !!data.whatsapp };
-    }
-
 
     // ============================================================
     //  REDES SOCIALES
@@ -770,17 +737,14 @@
     const MSG_CATALOGO = 'Catálogo en preparación.';
     async function cargarProductos() {
       setCatalogMessage('Cargando catálogo…');
-      const viaRender = typeof RENDER_BASE_URL !== 'undefined' && RENDER_BASE_URL && !/AQUÍ_PEGARÉ/.test(RENDER_BASE_URL);
-      if (!viaRender && (typeof SUPABASE_URL === 'undefined' || typeof SUPABASE_ANON_KEY === 'undefined')) {
+      if (typeof SUPABASE_URL === 'undefined' || typeof SUPABASE_ANON_KEY === 'undefined') {
         setCatalogMessage(MSG_CATALOGO);
         return;
       }
       try {
-        const res = viaRender
-          ? await fetch(String(RENDER_BASE_URL).replace(/\/+$/, '') + '/catalogo', { headers: { Accept: 'application/json' } })
-          : await fetch(`${SUPABASE_URL}/rest/v1/${SUPABASE_TABLE}?select=*&order=id.asc`, {
-              headers: { apikey: SUPABASE_ANON_KEY, Authorization: 'Bearer ' + SUPABASE_ANON_KEY, Accept: 'application/json' }
-            });
+        const res = await fetch(`${SUPABASE_URL}/rest/v1/${SUPABASE_TABLE}?select=*&order=id.asc`, {
+          headers: { apikey: SUPABASE_ANON_KEY, Authorization: 'Bearer ' + SUPABASE_ANON_KEY, Accept: 'application/json' }
+        });
         if (!res.ok) throw new Error('Supabase: HTTP ' + res.status);
         const rows = await res.json();
         products = rows.filter(r => r.activo !== false).map(normalizarProducto).filter(Boolean);
@@ -1222,22 +1186,6 @@
     }
 
     async function processRutAIResponse(userQuery) {
-      // Si RENDER_SERVER_URL está definida, Rut responde desde el servidor; si falla, usa las respuestas locales.
-      if (rutEndpoint()) {
-        showTypingIndicator(true);
-        try {
-          const r = await askRutServer(userQuery);
-          showTypingIndicator(false);
-          if (r.reply) {
-            rutSay('<p>' + escapeHTML(r.reply).replace(/\n/g, '<br>') + '</p>'
-              + (r.whatsapp ? waButton('Enviar mi pedido por WhatsApp', buildOrderMessage(userQuery)) : ''), 100);
-            return;
-          }
-        } catch (err) {
-          showTypingIndicator(false);
-          console.warn(err);
-        }
-      }
       const lower = userQuery.toLowerCase();
       let reply = "";
 
@@ -1294,25 +1242,6 @@
     });
     document.addEventListener('keydown', e => { if (e.key === 'Escape') { if (isChatOpen) closeRutChat(); toggleSearch(false); } });
   </script>
-    <!-- ========================================================
-         SCRIPT DE BLINDAJE: Bloquea inspección y clic derecho
-         ======================================================== -->
-    <script>
-        // 1. Bloquear el menú del clic derecho del mouse
-        document.addEventListener('contextmenu', function(e) {
-            e.preventDefault();
-        });
-
-        // 2. Bloquear combinaciones de teclas de inspección (F12, Ctrl+Shift+I, Ctrl+Shift+J, Ctrl+U)
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'F12' || 
-                (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'J')) || 
-                (e.ctrlKey && e.key === 'u') || 
-                (e.ctrlKey && e.key === 'U')) {
-                e.preventDefault();
-            }
-        });
-    </script>
-
+  <script src="js/main.js"></script>
 </body>
 </html>
