@@ -1,13 +1,13 @@
 // 1. INICIALIZAR CONEXIÓN PÚBLICA CON SUPABASE
-const SUPABASE_URL = "https://topcqcqjzhdglotjtdcn.supabase.co/rest/v1/; // Pega aquí la API URL que encontraste
-const SUPABASE_KEY = "sb_publishable_7sxze1he_SjEPpqUgX_nJw_WTJl5f09; // Pega aquí tu clave sb_publishable_...
+const SUPABASE_URL = "https://topcqcqjzhdglotjtdcn.supabase.co"; 
+const SUPABASE_KEY = "sb_publishable_7sxze1he_SjEPpqUgX_nJw_WTJl5f09"; // Tu clave completa real cerrada con comilla
 
 const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
-
-// 2. FUNCIÓN PARA CARGAR EL INVENTARIO EN LA PANTALLA
+// ========================================================
+// 2. FUNCIÓN INTELIGENTE PARA MOSTRAR LOS PRODUCTOS
+// ========================================================
 async function cargarProductosEmunah() {
     try {
-        // Consultamos de forma segura tu tabla real de productos
         const { data: productos, error } = await supabase
             .from('productos_emunah')
             .select('*');
@@ -16,15 +16,49 @@ async function cargarProductosEmunah() {
 
         console.log("Catálogo EMUNAH cargado con éxito:", productos);
         
-        // Aquí tu código tomará el arreglo 'productos' para dibujar las imágenes y precios en tu HTML
+        // Buscar en toda la página el letrero estático que hizo Claude
+        const elementos = document.querySelectorAll('*');
+        let contenedorOriginal = null;
+
+        for (let el of elementos) {
+            if (el.children.length === 0 && el.textContent.trim() === "Catálogo en preparación.") {
+                contenedorOriginal = el;
+                break;
+            }
+        }
+
+        // Si encuentra el texto, inyecta las tarjetas del catálogo
+        if (contenedorOriginal) {
+            const padre = contenedorOriginal.parentElement;
+            
+            padre.style.display = "grid";
+            padre.style.gridTemplateColumns = "repeat(auto-fill, minmax(220px, 1fr))";
+            padre.style.gap = "20px";
+            padre.style.padding = "20px";
+            padre.style.width = "100%";
+            padre.innerHTML = ""; // Borra el texto de preparación
+
+            productos.forEach(producto => {
+                const urlImagen = producto.imagen_url || producto.imagen || 'img/placeholder.jpg';
+                
+                padre.innerHTML += `
+                    <div class="tarjeta-producto" style="border: 1px solid #f0f0f0; padding: 15px; border-radius: 12px; text-align: center; background: #fff; box-shadow: 0 4px 6px rgba(0,0,0,0.02); transition: transform 0.2s;">
+                        <img src="${urlImagen}" alt="${producto.nombre}" style="width: 100%; height: 180px; object-fit: contain; margin-bottom: 10px;">
+                        <h3 style="font-size: 15px; font-weight: 600; color: #111; margin: 8px 0; min-height: 40px; display: flex; align-items: center; justify-content: center;">${producto.nombre}</h3>
+                        <p style="color: #ea580c; font-weight: 700; font-size: 16px; margin: 5px 0;">$${Number(producto.precio).toLocaleString('es-CO')} COP</p>
+                        <button style="background: #000; color: #fff; border: none; width: 100%; padding: 10px; border-radius: 8px; font-weight: 500; cursor: pointer; margin-top: 10px;">Agregar</button>
+                    </div>
+                `;
+            });
+        }
         
     } catch (err) {
         console.error("Error conectando con el catálogo de Supabase:", err.message);
     }
 }
 
-// Ejecutar la carga automáticamente apenas se abra la página web
 document.addEventListener('DOMContentLoaded', cargarProductosEmunah);
+
 
 // ============================================================================
 // ¡ATENCIÓN!: Abajo de esto dejas intacto el código del chat ('send-btn') que guardamos antes
