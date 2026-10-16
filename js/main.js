@@ -1,95 +1,54 @@
-// ========================================================
-// 1. INICIALIZAR CONEXIÓN PÚBLICA CON SUPABASE
-// ========================================================
-const SUPABASE_URL = "https://supabase.co"; 
-const SUPABASE_KEY = "sb_publishable_7sxze1he_SjEPpqUgX_nJw_WTJl5f09"; // Tu clave pública exacta
+/* EMUNAH · js/main.js
+   Conecta la tienda con tu backend de Vercel. Corre en el navegador: NO lleva ninguna clave.
+   Se carga al final de index.html, después del script principal, y usa sus funciones:
+   products, normalizarProducto, renderCatalog, setCatalogMessage, MSG_CATALOGO,
+   rutSay, showTypingIndicator, escapeHTML, waButton, buildOrderMessage. */
+(function () {
+  'use strict';
 
-const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
-
-// ========================================================
-// 2. FUNCIÓN PARA PINTAR LOS PRODUCTOS EN TU DISEÑO REAL
-// ========================================================
-async function cargarProductosEmunah() {
+  // ---------------------------------------------------------------- Catálogo → GET /api/catalogo
+  // Reemplaza a cargarProductos() del script principal (esa se llama al abrir la página).
+  window.cargarProductos = async function cargarProductos() {
+    setCatalogMessage('Cargando catálogo…');
     try {
-        // Consultamos tus 44 productos en Supabase
-        const { data: productos, error } = await supabase
-            .from('productos_emunah')
-            .select('*');
-
-        if (error) throw error;
-
-        console.log("Catálogo EMUNAH cargado con éxito:", productos);
-        
-        // Buscamos el contenedor exacto que vimos en tu index.html (Línea 345)
-        const contenedor = document.getElementById('productGrid');
-        
-        if (contenedor) {
-            contenedor.innerHTML = ""; // Limpia cualquier mensaje de preparación anterior
-
-            // Recorremos tu inventario y dibujamos las tarjetas comerciales
-            productos.forEach(producto => {
-                const urlImagen = producto.imagen_url || producto.imagen || 'img/placeholder.jpg';
-                
-                contenedor.innerHTML += `
-                    <div class="tarjeta-producto" style="border: 1px solid #f0f0f0; padding: 15px; border-radius: 12px; text-align: center; background: #fff; box-shadow: 0 4px 6px rgba(0,0,0,0.02); transition: transform 0.2s;">
-                        <img src="${urlImagen}" alt="${producto.nombre}" style="width: 100%; height: 180px; object-fit: contain; margin-bottom: 10px;">
-                        <h3 style="font-size: 15px; font-weight: 600; color: #111; margin: 8px 0; min-height: 40px; display: flex; align-items: center; justify-content: center;">${producto.nombre}</h3>
-                        <p style="color: #ea580c; font-weight: 700; font-size: 16px; margin: 5px 0;">$${Number(producto.precio).toLocaleString('es-CO')} COP</p>
-                        <button style="background: #000; color: #fff; border: none; width: 100%; padding: 10px; border-radius: 8px; font-weight: 500; cursor: pointer; margin-top: 10px;">Agregar</button>
-                    </div>
-                `;
-            });
-        }
-        
+      const res = await fetch('/api/catalogo', { headers: { Accept: 'application/json' } });
+      if (!res.ok) throw new Error('catálogo HTTP ' + res.status);
+      const rows = await res.json();
+      if (!Array.isArray(rows)) throw new Error('respuesta inesperada');
+      products = rows.filter(r => r && r.activo !== false).map(normalizarProducto).filter(Boolean);
+      if (!products.length) { setCatalogMessage(MSG_CATALOGO); return; }
+      renderCatalog();
     } catch (err) {
-        console.error("Error conectando con el catálogo de Supabase:", err.message);
+      setCatalogMessage(MSG_CATALOGO);   // mensaje neutral: el visitante no ve detalles técnicos
     }
-}
+  };
 
-// Ejecutar la carga automáticamente apenas se abra la página web
-document.addEventListener('DOMContentLoaded', cargarProductosEmunah);
+  // ---------------------------------------------------------------- Rut → POST /api/chat-rut
+  // Intenta con el servidor; si falla (sin clave, caído, límite de mensajes…) usa las respuestas locales de siempre.
+  const respuestasLocales = window.processRutAIResponse;   // la versión del script principal
+  const historial = [];                                    // últimos turnos, para que Rut recuerde la charla
 
-// ========================================================
-// 3. CONECTOR SEGURO DEL CHAT (MANTIENE VIVA A RUT)
-// ========================================================
-const sendBtn = document.getElementById('send-btn');
-const userInput = document.getElementById('user-input');
-const chatBox = document.getElementById('chat-box');
-
-if (sendBtn) {
-    sendBtn.addEventListener('click', async () => {
-        const mensaje = userInput.value.trim();
-        if (!mensaje) return;
-
-        chatBox.innerHTML += `<p><b>Tú:</b> ${mensaje}</p>`;
-        userInput.value = '';
-        chatBox.scrollTop = chatBox.scrollHeight;
-
-        try {
-            const response = await fetch('/api/chat-rut', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ mensajeUsuario: mensaje, tiendaId: "tienda_emunah_01" }) 
-            });
-
-            const data = await response.json();
-            
-            if (data.error) {
-                chatBox.innerHTML += `<p style="color: red;"><b>Error:</b> ${data.error}</p>`;
-            } else {
-                chatBox.innerHTML += `<p><b>Rut:</b> ${data.respuesta}</p>`;
-            }
-        } catch (error) {
-            chatBox.innerHTML += `<p style="color: red;"><b>Error:</b> No se pudo conectar con la asistente.</p>`;
-        }
-        chatBox.scrollTop = chatBox.scrollHeight;
-    });
-}
-
-if (userInput) {
-    userInput.addEventListener('keypress', (e) => {
-        if (e.key === 'Enter') {
-            sendBtn.click();
-        }
-    });
-}
+  window.processRutAIResponse = async function processRutAIResponse(userQuery) {
+    showTypingIndicator(true);
+    try {
+      const res = await fetch('/api/chat-rut', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ message: userQuery, history: historial.slice(-8) })
+      });
+      if (!res.ok) throw new Error('rut HTTP ' + res.status);
+      const data = await res.json();
+      const reply = typeof data.reply === 'string' ? data.reply.trim() : '';
+      if (!reply) throw new Error('respuesta vacía');
+      showTypingIndicator(false);
+      historial.push({ role: 'user', text: userQuery }, { role: 'rut', text: reply });
+      if (historial.length > 16) historial.splice(0, historial.length - 16);
+      // La respuesta se escapa antes de pintarla: nunca se inserta HTML que venga del servidor
+      rutSay('<p>' + escapeHTML(reply).replace(/\n/g, '<br>') + '</p>'
+        + (data.whatsapp ? waButton('Enviar mi pedido por WhatsApp', buildOrderMessage(userQuery)) : ''), 100);
+    } catch (err) {
+      showTypingIndicator(false);
+      return respuestasLocales(userQuery);
+    }
+  };
+})();
