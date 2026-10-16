@@ -340,7 +340,7 @@
         <button type="button" role="tab" data-cat="Camisetas Básicas Hombre" class="cat-tab">Camisetas Básicas Hombre</button>
         <button type="button" role="tab" data-cat="Termos" class="cat-tab">Termos</button>
         <button type="button" role="tab" data-cat="Tazas" class="cat-tab">Tazas</button>
-        <button type="button" role="tab" data-cat="Mousepads" class="cat-tab">Mousepads</button>
+        <button type="button" role="tab" data-cat="Accesorios" class="cat-tab">Accesorios</button>
       </div>
       <p id="resultCount" class="text-center text-[11px] text-slate-400 tracking-wide" aria-live="polite"></p>
     </div>
@@ -784,7 +784,7 @@
         btn.classList.toggle('is-active', btn.dataset.filter === filter);
       });
       document.querySelectorAll('.cat-tab').forEach(t => {
-        const on = t.dataset.cat === filter || (filter === 'Accesorios' && t.dataset.cat === 'Mousepads');
+        const on = t.dataset.cat === filter;
         t.classList.toggle('is-active', on);
         t.setAttribute('aria-selected', on ? 'true' : 'false');
       });
