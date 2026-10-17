@@ -2,6 +2,11 @@
   "name": "emunah-tienda",
   "version": "1.0.0",
   "private": true,
-  "engines": { "node": ">=18" },
-  "description": "Tienda EMUNAH: index.html + funciones de Vercel (/api/catalogo y /api/chat-rut)"
+  "engines": {
+    "node": ">=18"
+  },
+  "description": "Tienda EMUNAH: index.html + funciones de Vercel (/api/catalogo y /api/chat-rut)",
+  "dependencies": {
+    "@anthropic-ai/sdk": "0.131.0"
+  }
 }

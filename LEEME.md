@@ -24,7 +24,7 @@ vercel.json        cabeceras de seguridad
 
 ## Seguridad
 - Ninguna clave está en el HTML ni en `js/main.js`.
-- `/api/chat-rut` solo acepta peticiones de tu propio sitio, limita mensajes (600 caracteres) y frecuencia (12/min por visitante),
+- `/api/chat-rut` solo acepta peticiones de tu propio sitio, limita mensajes (300 caracteres), bloquea frases de manipulación y limita la frecuencia (5/min por visitante),
   trata todo lo que escribe el cliente como consulta y no como orden, y nunca acepta turnos falsos de "Rut" desde el navegador.
 - El límite por minuto vive en memoria de cada instancia (es una barrera básica). Para algo más fuerte activa
   Vercel Firewall > Rate Limiting sobre `/api/chat-rut`, y pon un tope de gasto en el panel de tu IA.

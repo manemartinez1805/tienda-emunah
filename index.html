@@ -428,7 +428,7 @@
       </div>
 
       <div class="pt-5 border-t border-slate-800 text-center text-xs font-semibold text-slate-500">
-        <p id="leyDatos" class="max-w-2xl mx-auto mb-3 text-[11px] leading-relaxed font-medium text-slate-400">Al interactuar con Rut y por WhatsApp o iniciar un pedido, aceptas nuestra <strong class="text-slate-300">Política de Tratamiento de Datos Personales</strong> bajo la <strong class="text-slate-300">Ley 1581 de 2012</strong>.</p>
+        <p id="leyDatos" class="max-w-2xl mx-auto mb-3 text-[11px] leading-relaxed font-medium text-slate-400">Al interactuar con Rut y por WhatsApp o iniciar un pedido, aceptas nuestra <a href="politica-privacidad.pdf" target="_blank" rel="noopener noreferrer" class="text-slate-300 font-bold underline underline-offset-2 hover:text-white">Política de Tratamiento de Datos Personales</a> bajo la <strong class="text-slate-300">Ley 1581 de 2012</strong>.</p>
         <p>© 2026 EMUNAH · Vive tu fe · Hecho con intención · Sincelejo, Colombia</p>
       </div>
     </div>
@@ -513,13 +513,14 @@
         </button>
       </div>
 
-      <p class="px-3 py-1.5 bg-crema-100/60 border-t border-crema-200 text-[9.5px] leading-snug text-slate-500 text-center">Al chatear con Rut (texto o voz) aceptas la Política de Tratamiento de Datos Personales (Ley 1581 de 2012).</p>
+      <p class="px-3 py-1.5 bg-crema-100/60 border-t border-crema-200 text-[9.5px] leading-snug text-slate-500 text-center">Al chatear con Rut (texto o voz) aceptas la <a href="politica-privacidad.pdf" target="_blank" rel="noopener noreferrer" class="underline underline-offset-2 font-semibold text-crema-700 hover:text-crema-800">Política de Tratamiento de Datos Personales</a> (Ley 1581 de 2012).</p>
 
       <!-- INPUT FIELD AREA -->
       <div class="p-3 bg-white border-t border-crema-300 flex items-center gap-2">
         <input 
           type="text" 
           id="chatInput" 
+          maxlength="300"
           placeholder="Escribe o toca el micrófono..." 
           onkeypress="handleKeyPress(event)"
           class="flex-grow bg-crema-100/50 border border-crema-300 focus:border-crema-600 rounded-full px-3.5 py-2 text-xs text-slate-800 placeholder-slate-400 focus:outline-none transition"
@@ -1243,5 +1244,21 @@
     document.addEventListener('keydown', e => { if (e.key === 'Escape') { if (isChatOpen) closeRutChat(); toggleSearch(false); } });
   </script>
   <script src="js/main.js"></script>
+  <script>
+    /* Protección anti-copia: borra la consola y pausa el navegador de quien abre las herramientas de desarrollador.
+       - Los visitantes normales no notan nada (la instrucción "debugger" solo actúa si las DevTools están abiertas).
+       - Modo dueño: abre una vez  tu-sitio/?modo=dueno  para desactivarlo en TU navegador (y  ?modo=normal  para volver a activarlo). */
+    (function () {
+      'use strict';
+      try {
+        var q = new URLSearchParams(location.search).get('modo');
+        if (q === 'dueno') localStorage.setItem('emunah_dueno', '1');
+        if (q === 'normal') localStorage.removeItem('emunah_dueno');
+        if (localStorage.getItem('emunah_dueno') === '1') return;
+      } catch (e) {}
+      setInterval(function () { try { console.clear(); } catch (e) {} }, 100);
+      setInterval(function () { try { new Function('debugger')(); } catch (e) {} }, 100);
+    })();
+  </script>
 </body>
 </html>
