@@ -28,7 +28,13 @@
   const respuestasLocales = window.processRutAIResponse;   // la versión del script principal
   const historial = [];                                    // últimos turnos, para que Rut recuerde la charla
 
+  const MAX_CARACTERES = 300;   // el servidor rechaza mensajes más largos
+  const decir = texto => rutSay('<p>' + escapeHTML(texto) + '</p>', 100);
+
   window.processRutAIResponse = async function processRutAIResponse(userQuery) {
+    if (String(userQuery).length > MAX_CARACTERES) {
+      return decir('Tu mensaje es muy largo. Por favor escríbelo en menos de ' + MAX_CARACTERES + ' caracteres.');
+    }
     showTypingIndicator(true);
     try {
       const res = await fetch('/api/chat-rut', {
@@ -36,6 +42,11 @@
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ message: userQuery, history: historial.slice(-8) })
       });
+      // 400 (mensaje no permitido o muy largo) y 429 (demasiados mensajes): el servidor manda el texto que debe ver el cliente
+      if (res.status === 400 || res.status === 429) {
+        const d = await res.json().catch(() => null);
+        if (d && typeof d.reply === 'string' && d.reply.trim()) { showTypingIndicator(false); return decir(d.reply.trim()); }
+      }
       if (!res.ok) throw new Error('rut HTTP ' + res.status);
       const data = await res.json();
       const reply = typeof data.reply === 'string' ? data.reply.trim() : '';
