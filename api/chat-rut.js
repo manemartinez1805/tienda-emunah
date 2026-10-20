@@ -3,6 +3,7 @@
 // Pensado solo para la tienda EMUNAH. La clave de la IA vive únicamente en la variable de entorno ANTHROPIC_API_KEY.
 const { leerCatalogo } = require('../lib/catalogo');
 const { preguntarARut, tieneClaveIA } = require('../lib/rut');
+const { esManipulacion } = require('../lib/filtros');
 
 const MAX_CARACTERES = 300;                                           // un mensaje más largo ni siquiera sale hacia la API de Anthropic
 const MAX_POR_MINUTO = Number(process.env.RUT_RATE_PER_MIN || 5);     // mensajes por minuto y por IP
@@ -12,40 +13,6 @@ const ORIGENES = (process.env.ALLOWED_ORIGINS || '').split(',').map(s => s.trim(
 const MSG_LARGO = `Tu mensaje es muy largo. Por favor escríbelo en menos de ${MAX_CARACTERES} caracteres.`;
 const MSG_FUERA = 'Solo puedo ayudarte con el catálogo de EMUNAH: camisetas, termos, tazas y más. ¿Qué producto te gustaría conocer? Bendiciones.';
 const MSG_RAPIDO = 'Estás escribiendo muy rápido. Espera un momento y vuelve a intentarlo, por favor.';
-
-// ---------------------------------------------------------------- Filtro anti-inyección de instrucciones
-// Lista negra de frases típicas de manipulación. Es una capa extra (se evade con facilidad): la defensa principal es
-// el diseño del sistema (historial nunca como turnos de Rut, reglas fijas, tope de tokens y límite por IP).
-const PROHIBIDAS = [
-  /\bignore\b/,                                                        // "ignore previous instructions"
-  /\bignora(r|d|s)?\b.*\b(instruccion(es)?|anterior(es)?|reglas?|prompt|todo)\b/,
-  /\bolvida\b.*\b(lo anterior|todo|tus instrucciones|las instrucciones|tus reglas)\b/,
-  /\bolvid(a|ar|en)\b.*\b(lo que te dijeron|lo anterior)\b/,
-  /\b(dame|dime|muestra(me)?|revela(me)?|repite|imprime|escribe)\b.*\b(tu|tus|el)\b.*\b(prompt|instrucciones|configuracion)\b/,
-  /system\s*prompt/,
-  /prompt (del|de) sistema/,
-  /instrucciones (del|de) sistema/,
-  /\bactua como\b/,
-  /\bactuar como\b/,
-  /\bhacker\b/,
-  /\bjailbreak\b/,
-  /\bmodo (desarrollador|dios|dan)\b/,
-  /\bdeveloper mode\b/,
-];
-
-function normalizar(texto) {
-  return String(texto)
-    .normalize('NFKC')
-    .replace(/[​-‏⁠﻿]/g, '')          // caracteres invisibles usados para saltarse filtros
-    .normalize('NFD').replace(/[̀-ͯ]/g, '')      // sin tildes
-    .toLowerCase()
-    .replace(/\s+/g, ' ')
-    .trim();
-}
-function esManipulacion(mensaje) {
-  const t = normalizar(mensaje);
-  return PROHIBIDAS.some(re => re.test(t));
-}
 
 // ---------------------------------------------------------------- Límite por IP (en memoria)
 // Barrera básica: cada instancia de Vercel lleva su propia cuenta. Se complementa con la regla de Vercel Firewall.
