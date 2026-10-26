@@ -11,7 +11,7 @@ const ORIGENES = (process.env.ALLOWED_ORIGINS || '').split(',').map(s => s.trim(
 
 // Mensajes que ve el cliente cuando se bloquea algo (no revelan qué regla se activó)
 const MSG_LARGO = `Tu mensaje es muy largo. Por favor escríbelo en menos de ${MAX_CARACTERES} caracteres.`;
-const MSG_FUERA = 'Solo puedo ayudarte con el catálogo de EMUNAH: camisetas, termos, tazas y más. ¿Qué producto te gustaría conocer? Bendiciones.';
+const MSG_FUERA = 'Solo puedo ayudarte con el catálogo de EMUNAH: camisetas, termos, mugs y más. ¿Qué producto te gustaría conocer? Bendiciones.';
 const MSG_RAPIDO = 'Estás escribiendo muy rápido. Espera un momento y vuelve a intentarlo, por favor.';
 
 // ---------------------------------------------------------------- Límite por IP (en memoria)
